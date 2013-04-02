@@ -5,7 +5,7 @@
 sudo su
 sudo apt-get update && apt-get upgrade
 # Установка программ для легкой работы в консоли
-sudo apt-get -y install htop mc aptitude
+sudo apt-get -y install htop mc aptitude zip unzip
 # Установка OpenSSH-server
 sudo apt-get -y install openssh-server && sudo /etc/init.d/ssh start
 # Установка LAMP server
