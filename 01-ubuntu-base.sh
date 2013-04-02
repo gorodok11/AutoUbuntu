@@ -9,5 +9,3 @@ sudo apt-get -y install htop mc aptitude zip unzip
 # Установка OpenSSH-server
 sudo apt-get -y install openssh-server && sudo /etc/init.d/ssh start
 
-# Установка Git
-sudo apt-get -y install git-core
