@@ -8,11 +8,6 @@ sudo apt-get update && apt-get upgrade
 sudo apt-get -y install htop mc aptitude zip unzip
 # Установка OpenSSH-server
 sudo apt-get -y install openssh-server && sudo /etc/init.d/ssh start
-# Установка LAMP server
-sudo tasksel install lamp-server
-# Установка phpMyAdmin
-sudo apt-get -y install phpmyadmin
-# Для входа в phpMyAdmin используйте адрес http://server_IP/phpmyadmin
 # Установка WebMin
 sudo apt-get -y install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl libdigest-md5-perl
 echo '# Webmin' | sudo tee -a /etc/apt/sources.list
