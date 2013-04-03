@@ -102,6 +102,7 @@ else
 fi
 
 bash 00-ubuntu-base.sh
+bash 01-ubuntu-ssh.sh
 
 bash ubuntu-snort.sh
 bash ubuntu-ossim.sh
