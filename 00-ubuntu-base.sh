@@ -1,11 +1,10 @@
 #!/bin/bash
-# Установка базовой системы с автоматической разметкой
-# После перезагрузки заходим по Администатором системы
-# Обновление базовой системы
-sudo su
-sudo apt-get update && apt-get upgrade
+# Установка базового ПО.
+
+# Связка функций из основного файла
+source 00-main.sh
 
 # Установка программ для легкой работы в консоли
-sudo apt-get -y install htop mc aptitude zip unzip
+apt-get -y install htop mc aptitude zip unzip
 
 
