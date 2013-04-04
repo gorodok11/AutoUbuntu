@@ -92,7 +92,3 @@ fi
 bash 00-ubuntu-base.sh
 bash 01-ubuntu-ssh.sh
 
-bash ubuntu-snort.sh
-bash ubuntu-ossim.sh
-bash ubuntu-nagios.sh
-bash ubuntu-opsview.sh
