@@ -12,6 +12,8 @@ source 00-functions.sh
 # удостоверимся что sshd работает и wget доступен.
 
 # Проверяет версию ОС.
+# Отображаем меню установки
+bash 00-menu-01.sh
 
 echo "Проверка версии ОС..."
      release=`lsb_release -r|awk '{print $2}'`
