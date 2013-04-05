@@ -185,3 +185,4 @@ fi
 #bash 03-ubuntu-webmin.sh
 #bash 05-ubuntu-snort.sh
 #bash 06-ubuntu-ajenti.sh
+#bash 07-ubuntu-zentyal.sh
