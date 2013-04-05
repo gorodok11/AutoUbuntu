@@ -9,6 +9,5 @@ cd /tmp
 wget http://www.webmin.com/jcameron-key.asc
 apt-key add jcameron-key.asc
 rm jcameron-key.asc
-apt-get install webmin
 apt-get update && apt-get -y install webmin
 # Для входа в WebMin используйте адрес https://server_IP:10000
