@@ -11,117 +11,16 @@
 # purpose: from nothing to full snort in gods know how much time it takes to compile some of this shit.
 #at some point, I want this script to log to something for error reporting.
 
-#Declaring Functions - This function is an easier way to reuse the apt-get code. 
-#I added a slight change to perform apt-get update to ensure we're getting the latest packages available.
-install_packages()
-{
- echo "Installing packages: ${@}"
- apt-get update && apt-get install -y ${@}
- if [ $? -eq 0 ]; then
-  echo "Packages successfully installed."
- else
-  echo "Packages failed to install!"
-  exit 1
- fi
-}
+source 00-functions.sh
 
-
-# We need to check OS we're installing to, net connectivity, user we are running as, ensure sshd is running and wget is available.
-
-# checks lsb_release -r and awks the version number to verify what OS we're running.
-# warns the user if we're not running on a supported OS
-# asks if they want to continue.
-echo "OS Version Check."
-     release=`lsb_release -r|awk '{print $2}'`
-     if [ $release = "12.04" -o $release = "12.10" ]
-          then
-  		   echo "OS Check successful."
-               
-          else
-               echo "This is not Ubuntu 12.04 or 12.10, and has NOT been tested on other platforms."
-               while true; do
-                   read -p "Continue? (y/n)" warncheck
-                   case $warncheck in
-                       [Yy]* ) break;;
-                       [Nn]* ) echo "Cancelling."; exit;;
-                       * ) echo "Please answer yes or no.";;
-                   esac
-				done
-		echo " "
-     fi
-
-#Connectivity check uses icmp, pings google once and checks for exit 0 status of the command. 
-#Exits script on error and notifies user connectivity check failed.
-#Thinking about removing this and assuming the user has internet access?
-echo "Checking internet connectivity (pinging google.com)"
-     ping google.com -c1 2>&1 >> /dev/null
-     if [ $? -eq 0 ]; then
-          echo "Connectivity looks good!"
-     else
-          echo "Ping to google has failed. Please verify you have network connectivity or ICMP outbound is allowed. Seriously, what harm is it going to do?"
-   	  exit 1
-     fi
-
-#assumes script is ran as root. root check performed via use of whoami. 
-#checks for a response of "root" if user isn't root, script exits and notifies user it needs to be ran as root.
-
-echo "User Check"
-     if [ $(whoami) != "root" ]
-          then
-               echo "This script must be ran with sudo or root privileges, or this isn't going to work."
-		exit 1
-          else
-               echo "We are root."
-     fi
-	 
-#Checking to ensure sshd is running done by running ps-ef, grepping for sshd, using wc -l and if we have more than one line, using that as a sign that SSHD is running 
-#Anyone who's used ps-ef | grep [blah] knows that it will always return 0. 
-#However if it only returns one line, that means the process you are searching for is not actually running.
-
-echo "Checking to ensure sshd is running."
-
-	if [ $(/bin/ps -ef |/bin/grep sshd |/usr/bin/wc -l) -gt 1 ]
-		then
-			echo "sshd is running "
-		else
-			echo "sshd isn't running... The script can continue, but in most cases, sshd is use for remotely managing snort sensors."
-	fi
-
-#the below checks for the existence of wget and offers to download it via apt-get if it isn't installed.
-#Wget check cleaned up, redirected to /dev/null. We look for an exit 0 status against "which wget".
-#any status other than 0 results in use asking the user if they want to install wget, which is required for us to download several sourcetarballs for the script.
-
-	/usr/bin/which wget 2>&1 >> /dev/null
-		if [ $? -ne 0 ]; then
-        		echo "wget not found. Install wget?"
-         case $wget_install in
-                                [yY] | [yY][Ee][Ss])
-				install_packages wget
-                                ;;
-                                *)
-                                echo "Either you selected no or I didn't understand. Wget is required to continue. Exiting."
-                                exit 1
-                                ;;
-                                esac
-		else
-        		echo "found wget."
-		fi
+tput setaf 2
+echo "Установка Snort"
+tput sgr0
 		
 ####step 2: patches and package pre-reqs####
-
-#Here we call apt-get update and apt-get -y upgrade to ensure all repos and stock software is fully updated.
-#For consistency, if the command chain exits on anything other than a 0 exit code, we notify the user that updates were not successfully installed.
-
-echo "Performing apt-get update and apt-get upgrade (with -y switch)"
-
-apt-get update && apt-get -y upgrade 
-if [ $? -eq 0 ]; then
-	echo "Packages and repos are fully updated."
-else
-	echo "apt-get upgrade or update failed."
-fi
-
-echo "Grabbing required packages via apt-get."
+tput setaf 2
+echo "Установка необходимых пакетов apt-get."
+tput sgr0
 
 #Here we grab base install requirements for a full stand-alone snort sensor, including web server for web UI. 
 #TODO: Give users a choice -- do they want to install a collector, a full stand-alone sensor, or a barebones sensor install?
@@ -138,7 +37,7 @@ declare -a packages=(mysql-server libmysqlclient-dev)
 install_packages ${packages[@]}
 
 
-echo "mysql server and client installed. Make sure to store the root user password somewhere safe."
+echo "mysql server установлен. Make sure to store the root user password somewhere safe."
 
 #We pull snort.org/snort-downloads and use some grep and cut-fu to determine the current stable daq and snort version and download them to /usr/src
 
@@ -778,7 +677,7 @@ while true; do
 	case $ui_choice in
 		1)
 		echo "You have chosen to install Snort Report."
-		bash ubuntu-snortreport.sh
+		bash 05-1-ubuntu-snortreport.sh
 		if [ $? != 0 ]; then
 			echo "It looks like the installation did not go as according to plan."
 			echo "Verify you have network connectiviy and try again"
@@ -791,7 +690,7 @@ while true; do
 		;;
 		2)
 		echo "You have chosen to install Aanval."
-		bash ubuntu-aanval.sh
+		bash 05-2-ubuntu-aanval.sh
 		if [ $? != 0 ]; then
 			echo "It looks like the installation did not go as according to plan."
 			echo "Verify you have network connectiviy and try again"
