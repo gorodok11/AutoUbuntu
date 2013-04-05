@@ -15,7 +15,7 @@ if [ $? != 0 ];then
 else
 	echo "Successfully downloaded the jpgraph tarball."
 fi
-mkdir /var/www/jpgraph
+mkdir -p /var/www/jpgraph
 tar -xzvf jpgraph-1.27.1.tar.gz
 cp -r jpgraph-1.27.1/src /var/www/jpgraph
 
