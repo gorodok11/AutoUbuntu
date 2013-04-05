@@ -107,7 +107,7 @@ echo ""
 
 echo "creating directories /var/log/snort, and /var/snort."
 
-mkdir /var/snort && mkdir /var/log/snort
+mkdir -p /var/snort && mkdir -p /var/log/snort
 
 echo "creating snort user and group, assigning ownership of /var/log/snort to snort user and group. \n"
 
@@ -161,7 +161,7 @@ select 2 for pulled pork installation and setup.
 						echo "untar successful"
 						echo ""
 					fi
-                    mkdir /usr/local/snort/lib/snort_dynamicrules
+                    mkdir -p /usr/local/snort/lib/snort_dynamicrules
                     if [ $arch = "i386" ]; then
                         echo "copying 32-bit SO rules."
                         cp /usr/local/snort/so_rules/precompiled/Ubuntu-12-04/i386/2.9.*/* /usr/local/snort/lib/snort_dynamicrules
@@ -191,11 +191,11 @@ select 2 for pulled pork installation and setup.
 # the other two variables, currentver and prevver are for the entire pulled pork sub section. Let me down there to explain what's going on.
 			2 )
             echo "chose pp"
-			mkdir /usr/local/snort/etc
-			mkdir /usr/local/snort/so_rules
-			mkdir /usr/local/snort/rules
-			mkdir /usr/local/snort/preproc_rules
-			mkdir /usr/local/snort/lib/snort_dynamicrules
+			mkdir -p /usr/local/snort/etc
+			mkdir -p /usr/local/snort/so_rules
+			mkdir -p /usr/local/snort/rules
+			mkdir -p /usr/local/snort/preproc_rules
+			mkdir -p /usr/local/snort/lib/snort_dynamicrules
 			#download the latest snort-rules page. We're setting four variables, two for pulled pork, and two to download a valid snort.conf from labs.snort.org - we need a snort.conf in place for pulledpork to generate so rule stubs.
 			wget -q http://www.snort.org/snort-rules -O /tmp/snort-rules
 			currentverconf=`cat /tmp/snort-rules  | grep snortrules-snapshot-[0-9][0-9][0-9][0-9]|cut -d"-" -f3 |cut -d"." -f1 | sort -ur | head -1` #snort.conf download attempt 1
@@ -451,7 +451,7 @@ echo "configuring supporting infrastructure for barnyard (file ownership to snor
 #the statements below copy the barnyard2.conf file where we want it and establish proper rights to various barnyard2 files and directories.
 
 cp etc/barnyard2.conf /usr/local/snort/etc
-mkdir /var/log/barnyard2
+mkdir -p /var/log/barnyard2
 chmod 666 /var/log/barnyard2
 touch /var/log/snort/barnyard2.waldo
 chown snort.snort /var/log/snort/barnyard2.waldo
