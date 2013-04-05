@@ -18,9 +18,9 @@ cd /tmp
 wget -q http://keys.zentyal.org/zentyal-3.0-archive.asc -O- | sudo apt-key add -
 apt-get update
 # Форсируем установку так как не нашел подходящий ключ для zentyal
-apt-get -y --force-yes install zentyal
+apt-get -y install zentyal
 #Установить эти пакеты прежде чем запустить WEB интерфейс
-apt-get -y --force-yes install zentyal-software zentyal-network zentyal-firewall
+apt-get -y install zentyal-software zentyal-network zentyal-firewall
 #Остальные модули устанавливаем тоже из консоли так как нет рабочего ключа
-apt-get -y --force-yes install zentyal-antivirus zentyal-ebackup zentyal-dns zentyal-bwmonitor zentyal-webserver
+apt-get -y install zentyal-antivirus zentyal-ebackup zentyal-dns zentyal-bwmonitor zentyal-webserver
 
