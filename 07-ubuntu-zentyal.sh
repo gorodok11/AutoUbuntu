@@ -16,4 +16,8 @@ echo 'deb http://archive.zentyal.org/zentyal 3.0 main extra' | sudo tee -a /etc/
 
 cd /tmp
 wget -q http://keys.zentyal.org/zentyal-3.0-archive.asc -O- | sudo apt-key add -
-apt-get update && apt-get -y install zentyal
+apt-get update
+# Форсируем установку так как не нашел подходящий ключ для zentyal
+apt-get -y --force-yes install zentyal
+#Установить эти пакеты прежде чем запустить WEB интерфейс
+apt-get -y --force-yes install zentyal-software zentyal-network zentyal-firewall
