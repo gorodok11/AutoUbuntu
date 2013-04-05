@@ -137,7 +137,7 @@ tput sgr0
 
 #_______________________________________________________________________
 
-tput setaf 3
+tput setaf 2
 echo  "Проверяем установку wget"
 tput sgr0
 /usr/bin/which wget 2>&1 >> /dev/null
