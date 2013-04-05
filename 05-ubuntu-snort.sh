@@ -33,7 +33,7 @@ install_packages ${packages[@]}
 
 echo "Acquiring and install mysql server and client packages. You will need to assign a password to the root mysql user."
 
-declare -a packages=(mysql-server libmysqlclient-dev)
+declare -a packages=(mysql-server libmysqlclient-dev libwww-perl)
 install_packages ${packages[@]}
 
 
