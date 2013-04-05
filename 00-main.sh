@@ -183,4 +183,5 @@ fi
 #bash 01-ubuntu-ssh.sh
 #bash 02-ubuntu-lamp.sh
 #bash 03-ubuntu-webmin.sh
-bash 05-ubuntu-snort.sh
+#bash 05-ubuntu-snort.sh
+#bash 06-ubuntu-ajenti.sh
