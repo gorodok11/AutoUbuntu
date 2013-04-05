@@ -4,6 +4,8 @@ tput setaf 2
 echo "Установка Ajenti"
 tput sgr0
 
+apt-get install sysstat python-psutil
+
 echo '# Ajenti' | sudo tee -a /etc/apt/sources.list
 echo 'deb http://repo.ajenti.org/debian main main' | sudo tee -a /etc/apt/sources.list
 
