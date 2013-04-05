@@ -21,3 +21,6 @@ apt-get update
 apt-get -y --force-yes install zentyal
 #Установить эти пакеты прежде чем запустить WEB интерфейс
 apt-get -y --force-yes install zentyal-software zentyal-network zentyal-firewall
+#Остальные модули устанавливаем тоже из консоли так как нет рабочего ключа
+apt-get -y --force-yes install zentyal-antivirus zentyal-ebackup zentyal-dns zentyal-bwmonitor zentyal-webserver
+
