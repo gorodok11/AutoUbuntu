@@ -179,7 +179,7 @@ fi
 
 #_______________________________________________________________________
 
-bash 00-ubuntu-base.sh
-bash 01-ubuntu-ssh.sh
-bash 02-ubuntu-lamp.sh
-
+#bash 00-ubuntu-base.sh
+#bash 01-ubuntu-ssh.sh
+#bash 02-ubuntu-lamp.sh
+#bash 03-ubuntu-webmin.sh
