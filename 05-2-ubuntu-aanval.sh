@@ -13,7 +13,7 @@ apt-get install -y zlib1g-dev libmysqld-dev byacc libxml2-dev zlib1g
 
 echo "making the aanval web UI directory"
 #Make the aanval directory under /var/www, and cd into it
-mkdir /var/www/aanval
+mkdir -p /var/www/aanval
 cd /var/www/aanval
 
 # We need to grab aanval from the aanval.com site. If this fails, we exit the script with a status of 1
